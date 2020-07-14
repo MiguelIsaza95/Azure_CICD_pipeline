@@ -20,25 +20,16 @@ stages:
     - bash: echo build secondjob
 - stage: DevDeploy
   jobs: 
-  - job: FirstJob
+  - job: DevDeployJob
     steps:
     - bash: echo build firstjob
-  - job: SecondJob
-    steps:
-    - bash: echo build secondjob
 - stage: QADeploy
   jobs: 
-  - job: FirstJob
+  - job: QADeployJob
     steps:
     - bash: echo build firstjob
-  - job: SecondJob
-    steps:
-    - bash: echo build secondjob
 - stage: ProdDeploy
   jobs: 
-  - job: FirstJob
+  - job: ProdDeployJob
     steps:
     - bash: echo build firstjob
-  - job: SecondJob
-    steps:
-    - bash: echo build secondjob

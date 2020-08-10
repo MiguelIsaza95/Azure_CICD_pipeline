@@ -20,7 +20,8 @@ steps:
 - task: TerraformCLI@0
   inputs:
     command: 'init'
-    commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.SecureFilePath)'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
+    # commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.SecureFilePath)'
     backendType: 'azurerm'
     backendServiceArm: 'azure-resource-management'
     ensureBackend: true
@@ -29,3 +30,10 @@ steps:
     backendAzureRmStorageAccountName: 'maiazurestorageabc'
     backendAzureRmContainerName: 'maiazurestoragecontainer'
     backendAzureRmKey: 'terraform-azure.tfstate'
+
+- task: TerraformCLI@0
+  inputs:
+    command: 'apply'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
+    environmentServiceName: 'azure-resource-management'
+    commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.SecureFilePath)'

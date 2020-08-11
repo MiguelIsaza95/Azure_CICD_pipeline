@@ -14,7 +14,7 @@ resource "aws_default_vpc" "default" {
 module "miguelisaza95-cluster" {
   source          = "terraform-aws-modules/eks/aws"
   cluster_name    = "miguelisaza95-cluster"
-  cluster_version = "1.18"
+  cluster_version = "1.14"
   subnets         = ["subnet-d98ab893", "subnet-f4fe91a8"] #CHANGE
   #subnets = data.aws_subnet_ids.subnets.ids
   vpc_id          = aws_default_vpc.default.id

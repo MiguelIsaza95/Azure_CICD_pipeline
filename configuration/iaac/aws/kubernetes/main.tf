@@ -4,17 +4,24 @@
 # terraform-backend-state-in28minutes-123
 # AKIA4AHVNOD7OOO6T4KI
 
-
-terraform {
-  backend "s3" {
-    bucket = "mybucket" # Will be overridden from build
-    key    = "path/to/my/key" # Will be overridden from build
-    region = "us-east-1"
-  }
-}
-
 resource "aws_default_vpc" "default" {
 
+}
+
+resource "aws_s3_bucket" "mai_backend" {
+  bucket = "backend-mai-azure-tf"
+  acl = "private"
+  versioning {
+    enabled = true
+  }
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
 }
 
 data "aws_subnet_ids" "subnets" {
@@ -33,7 +40,7 @@ module "miguelisaza95-cluster" {
   source          = "terraform-aws-modules/eks/aws"
   cluster_name    = "miguelisaza95-cluster"
   cluster_version = "1.14"
-  subnets         = ["subnet-3f7b2563", "subnet-4a7d6a45"] #CHANGE
+  subnets         = ["subnet-d98ab893", "subnet-f4fe91a8"] #CHANGE
   #subnets = data.aws_subnet_ids.subnets.ids
   vpc_id          = aws_default_vpc.default.id
 

@@ -22,7 +22,7 @@ spec:
         app: currency-exchange
     spec:
       containers:
-      - image: miguelisaza95/currency-exchange:latest #CHANGE
+      - image: miguelisaza95/currency-exchange-devops:latest #CHANGE
         imagePullPolicy: IfNotPresent
         name: currency-exchange
         ports:

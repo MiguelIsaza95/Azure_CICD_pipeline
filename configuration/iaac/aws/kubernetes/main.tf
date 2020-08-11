@@ -8,22 +8,6 @@ resource "aws_default_vpc" "default" {
 
 }
 
-resource "aws_s3_bucket" "mai_backend" {
-  bucket = "backend-mai-azure-tf"
-  acl = "private"
-  versioning {
-    enabled = true
-  }
-
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        sse_algorithm = "AES256"
-      }
-    }
-  }
-}
-
 data "aws_subnet_ids" "subnets" {
   vpc_id = aws_default_vpc.default.id
 }

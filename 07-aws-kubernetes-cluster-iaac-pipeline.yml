@@ -14,7 +14,6 @@ steps:
   displayName: 'Run a one-line script'
 
 # init - backned
-
 - task: TerraformTaskV1@0
   inputs:
     provider: 'aws'
@@ -25,3 +24,9 @@ steps:
     backendAWSKey: 'k8s-backend.tfstate'
 
 # Apply
+- task: TerraformTaskV1@0
+  inputs:
+    provider: 'aws'
+    command: 'apply'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/aws/kubernetes'
+    environmentServiceNameAWS: 'aws-for-terraform'

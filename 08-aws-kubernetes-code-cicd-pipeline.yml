@@ -24,10 +24,11 @@ stages:
     - task: Docker@2
       displayName: Build an image
       inputs:
-        command: build
-        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-        tags: |
-          $(tag)
+        containerRegistry: 'miguelisaza95-docker-hub'
+        repository: 'miguelisaza95/currency-exchange-devops'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
+        tags: '$(tag)'
 
     - task: CopyFiles@2
       inputs:

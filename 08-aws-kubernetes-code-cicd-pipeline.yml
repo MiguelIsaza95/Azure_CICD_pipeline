@@ -54,7 +54,7 @@ stages:
         buildType: 'current'
         artifactName: 'mainfest'
         itemPattern: '**/*.yaml'
-        targetPath: '$(System.ArtifactDirectory)'
+        targetPath: '$(System.ArtifactsDirectory)'
     
 # Deploy container to k8s cluster
     - task: KubernetesManifest@0

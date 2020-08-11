@@ -62,5 +62,5 @@ stages:
         action: 'deploy'
         kubernetesServiceConnection: 'aws-kubernetes-cluster-connection'
         namespace: 'default'
-        manifests: '$(System.ArtifactDirectory)/configuration/kubernetes/deployment.yaml'
+        manifests: '$(System.ArtifactsDirectory)/configuration/kubernetes/deployment.yaml'
         containers: 'miguelisaza95/currency-exchange-devops:$(tag)'
